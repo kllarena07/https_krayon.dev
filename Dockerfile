@@ -31,28 +31,19 @@ RUN cargo build --release
 RUN mkdir -p /app && \
     cp target/release/portfolio-v2 /app/ && \
     mkdir -p /app/hikari-dance && \
-    cp hikari-dance/frames_cache.bin /app/hikari-dance/ && \
-    chown -R appuser:appgroup /app
+    cp hikari-dance/frames_cache.bin /app/hikari-dance/
 
-# Set up chroot environment
-RUN mkdir -p /app/bin /app/lib /app/lib64 /app/etc /app/proc /app/dev && \
-    cp /bin/bash /app/bin/ && \
-    cp /bin/sh /app/bin/ && \
-    cp /bin/ls /app/bin/ && \
-    cp /bin/cat /app/bin/ && \
-    cp /bin/pwd /app/bin/ && \
-    cp /bin/whoami /app/bin/ && \
-    cp /etc/passwd /app/etc/ && \
-    cp /etc/group /app/etc/ && \
-    cp /etc/nsswitch.conf /app/etc/ 2>/dev/null || true && \
-    ldconfig /app/lib /app/lib64 2>/dev/null || true
+# Set up read-only environment
+RUN chown -R root:root /app && \
+    chmod -R 555 /app && \
+    chmod 755 /app/portfolio-v2
 
-# Switch to non-root user
+# Switch to appuser
 USER appuser
 
 # Expose ttyd default port
 EXPOSE 7681
 
-# Start ttyd with the binary
+# Start ttyd with binary
 WORKDIR /app
 CMD ["ttyd", "--writable", "-p", "7681", "sh", "-c", "./portfolio-v2; exec bash"]
