@@ -1,0 +1,11 @@
+figlet -f slant "WELCOME"
+
+echo "Hi! If you're seeing this, then you decided to exit the TUI program that displays my portfolio."
+echo ""
+echo "Thanks for being curious (:"
+echo ""
+echo "What you're seeing now is a REAL terminal, not a web application."
+echo ""
+echo "You can verify this using commands like 'cat /etc/os-release' and 'uname -a' or go ahead and 'cd' around."
+echo ""
+echo "If you'd like to restart the TUI program, simply run './portfolio-v2'"

@@ -1,0 +1,7 @@
+services:
+  ttyd-krayon:
+    build: .
+    ports:
+      - "7681:7681"
+    container_name: ttyd-krayon
+    restart: unless-stopped
