@@ -1,8 +1,9 @@
-FROM tsl0922/ttyd:latest
+# Build stage
+FROM tsl0922/ttyd:latest as builder
 
-# Install git, rust, and create non-root user
+# Install build dependencies and create user
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y git curl build-essential clang cmake tzdata figlet && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y git curl build-essential clang cmake && \
     groupadd -g 1000 appgroup && \
     useradd -u 1000 -g appgroup -m -s /bin/bash appuser && \
     apt-get clean && \
@@ -15,26 +16,29 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     CC=clang \
     CXX=clang++
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    chmod -R a+w $RUSTUP_HOME $CARGO_HOME
+    chmod -R a+w $RUSTUP_HOME $CARGO_HOME && \
+    git clone https://github.com/kllarena07/ssh_krayon.dev /build && \
+    cd /build && \
+    git checkout 1a1b1838d3ea92e803aa78f6bab4813863c1a5dc && \
+    cargo build --release
 
-# Set working directory for build
-WORKDIR /build
+# Runtime stage
+FROM tsl0922/ttyd:latest
 
-# Clone the repository
-RUN git clone https://github.com/kllarena07/ssh_krayon.dev . && \
-    git checkout 1a1b1838d3ea92e803aa78f6bab4813863c1a5dc
+# Install only runtime dependencies
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata figlet && \
+    groupadd -g 1000 appgroup && \
+    useradd -u 1000 -g appgroup -m -s /bin/bash appuser && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Build the Rust project
-RUN cargo build --release
-
-# Create app directory and copy binary
-RUN mkdir -p /app && \
-    cp target/release/portfolio-v2 /app/ && \
-    mkdir -p /app/hikari-dance && \
-    cp hikari-dance/frames_cache.bin /app/hikari-dance/
-
-# Copy welcome script and set up read-only environment
+# Copy only necessary files from builder
+COPY --from=builder /build/target/release/portfolio-v2 /app/
+COPY --from=builder /build/hikari-dance/frames_cache.bin /app/hikari-dance/
 COPY welcome.sh /app/
+
+# Set up read-only environment and permissions
 RUN chown -R root:root /app && \
     chmod -R 555 /app && \
     chmod 755 /app/portfolio-v2 && \
