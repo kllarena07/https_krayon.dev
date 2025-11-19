@@ -2,7 +2,7 @@ FROM tsl0922/ttyd:latest
 
 # Install git, rust, and create non-root user
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y git curl build-essential clang cmake tzdata && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y git curl build-essential clang cmake tzdata figlet && \
     groupadd -g 1000 appgroup && \
     useradd -u 1000 -g appgroup -m -s /bin/bash appuser && \
     apt-get clean && \
@@ -33,10 +33,12 @@ RUN mkdir -p /app && \
     mkdir -p /app/hikari-dance && \
     cp hikari-dance/frames_cache.bin /app/hikari-dance/
 
-# Set up read-only environment
+# Copy welcome script and set up read-only environment
+COPY welcome.sh /app/
 RUN chown -R root:root /app && \
     chmod -R 555 /app && \
-    chmod 755 /app/portfolio-v2
+    chmod 755 /app/portfolio-v2 && \
+    chmod 755 /app/welcome.sh
 
 # Switch to appuser
 USER appuser
@@ -46,4 +48,4 @@ EXPOSE 7681
 
 # Start ttyd with binary
 WORKDIR /app
-CMD ["ttyd", "--writable", "-p", "7681", "sh", "-c", "./portfolio-v2; exec bash"]
+CMD ["ttyd", "--writable", "-p", "7681", "sh", "-c", "./portfolio-v2; ./welcome.sh; exec bash"]
