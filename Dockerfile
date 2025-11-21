@@ -19,7 +19,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     chmod -R a+w $RUSTUP_HOME $CARGO_HOME && \
     git clone https://github.com/kllarena07/ssh_krayon.dev /build && \
     cd /build && \
-    git checkout 1a1b1838d3ea92e803aa78f6bab4813863c1a5dc && \
     cargo build --release
 
 # Runtime stage
