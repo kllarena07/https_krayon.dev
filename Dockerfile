@@ -1,5 +1,5 @@
 # Build stage
-FROM tsl0922/ttyd:latest AS builder
+FROM krayon/ttyd:latest AS builder
 
 # Install build dependencies and create user
 RUN apt-get update && \
@@ -22,7 +22,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     cargo build --release
 
 # Runtime stage
-FROM tsl0922/ttyd:latest
+FROM krayon/ttyd:latest
 
 # Install only runtime dependencies
 RUN apt-get update && \
@@ -37,15 +37,13 @@ COPY --from=builder /build/target/release/portfolio-v2 /app/
 COPY --from=builder /build/hikari-dance/frames_cache.bin /app/hikari-dance/
 COPY welcome.sh /app/
 COPY start.sh /app/
-COPY favicon.ico /app/
 
 # Set up read-only environment and permissions
 RUN chown -R root:root /app && \
     chmod -R 555 /app && \
     chmod 755 /app/portfolio-v2 && \
     chmod 755 /app/welcome.sh && \
-    chmod 755 /app/start.sh && \
-    chmod 644 /app/favicon.ico
+    chmod 755 /app/start.sh
 
 # Switch to appuser
 USER appuser
