@@ -41,8 +41,6 @@ services:
         limits:
           cpus: "0.50"
           memory: 1GB
-    ports:
-      - "7681:7681"
     stdin_open: true
     tty: true
 volumes:
