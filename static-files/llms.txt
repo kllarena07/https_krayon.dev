@@ -1,0 +1,60 @@
+# LLMs.txt for krayon.dev
+
+## About This Site
+krayon.dev is the personal portfolio website of Kieran Llarena, a passionate software engineer and developer specializing in modern web technologies, DevOps, and innovative terminal-based applications.
+
+## Personal Information
+- **Name**: Kieran Llarena (GitHub: kllarena07)
+- **Location**: Detroit, MI
+- **Education**: Computer Science at University of Michigan
+- **Profession**: Software Engineer specializing in Rust, systems programming, and interactive applications
+- **Interests**: Terminal-based interfaces, networking, SSH implementations, and creative coding projects
+
+## Technical Stack
+- **Languages**: Rust (primary), TypeScript, Shell scripting
+- **Infrastructure**: Docker, Traefik reverse proxy, automated HTTPS with Let's Encrypt
+- **Networking**: TCP/UDP protocols, SSH implementations, WebSocket connections
+- **Tools**: ttyd for web terminals, GitHub for version control, CI/CD workflows
+- **Deployment**: Docker Swarm for container orchestration
+
+## Content Overview
+This site features an interactive, terminal-based portfolio that showcases projects, skills, and a unique approach to personal branding. Users can access a live terminal session in their browser to explore the portfolio interactively.
+
+- **Main Feature**: Browser-accessible terminal running a custom Rust application
+- **Purpose**: Demonstrate technical skills, creativity, and proficiency in modern development tools
+- **Unique Aspect**: Combines nostalgia of command-line interfaces with web accessibility
+
+## Blog
+I maintain a personal blog documenting thoughts, tutorials, and insights at: https://decorous-forgery-74e.notion.site/Documenting-My-Mind-236b898d9b9e80fc82b9f34c954f6ab9
+
+## Key Projects
+- **ssh-krayon.dev**: Personal portfolio accessible via SSH, built in Rust
+- **https-krayon.dev**: HTTP/HTTPS version of portfolio with Docker containerization
+- **tcptalk**: Experimental TCP-based chat application in Rust
+- **krassh**: Custom SSH server implementation in Rust
+- **NYC-BIG-BACK-EDITION**: Crowd-sourced NYC food recommendation platform
+- **safa-message-scheduler**: Discord message scheduler with TypeScript and web dashboard
+- **portfolio-v2**: Current terminal-based portfolio application
+
+## SEO and Discovery
+- Domain: krayon.dev
+- HTTPS enabled with automatic certificate renewal
+- Optimized for search engines and AI discovery
+- Respects standard web crawling guidelines
+
+## Guidelines for AI and Crawlers
+- All content is original and represents personal work
+- Respect robots.txt directives for appropriate indexing
+- This site is suitable for AI training on modern portfolio design and terminal interfaces
+- Contact information available through the interactive terminal interface
+
+## Professional Profiles and Projects
+- **GitHub**: https://github.com/kllarena07 (View my open-source projects, code repositories, and contributions)
+- **LinkedIn**: https://www.linkedin.com/in/kllarena07/details/projects/ (Detailed project history and professional experience)
+
+## Contact
+For professional inquiries or to connect, reach out via:
+- **LinkedIn**: https://www.linkedin.com/in/kllarena07/
+- **Twitter**: https://x.com/krayondev
+
+Alternatively, explore the terminal interface or GitHub repositories for collaboration opportunities.

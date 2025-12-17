@@ -1,0 +1,32 @@
+# Group 1: All Search Engines
+User-agent: *
+
+# Allow all content by default
+Allow: /
+
+# Block unnecessary system files and private areas
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /config/
+Disallow: /temp/
+Disallow: /tmp/
+
+# Block internal search results (prevents "low quality" thin content indexing)
+Disallow: /search/
+Disallow: /?s=
+Disallow: /search?
+
+# Block URL parameters that create duplicate content (tracking/sorting)
+Disallow: /*?sort=
+Disallow: /*?ref=
+Disallow: /*?utm_
+
+# Allow CSS and JS (Crucial for Google to "see" your site layout correctly)
+Allow: /wp-admin/admin-ajax.php
+Allow: /wp-includes/*.js
+Allow: /wp-includes/*.css
+
+# Host and Sitemap
+# Replace the URL below with your actual XML sitemap link
+Sitemap: https://krayon.dev/sitemap.xml

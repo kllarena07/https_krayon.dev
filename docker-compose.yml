@@ -43,6 +43,16 @@ services:
           memory: 1GB
     stdin_open: true
     tty: true
+  file-server:
+    image: nginx:alpine
+    volumes:
+      - ./static-files:/usr/share/nginx/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.files.rule=Host(`krayon.dev`) && (Path(`/robots.txt`) || Path(`/llms.txt`))"
+      - "traefik.http.services.files.loadbalancer.server.port=80"
+      - "traefik.http.routers.files.entrypoints=websecure"
+      - "traefik.http.routers.files.tls.certresolver=myresolver"
 volumes:
   letsencrypt:
     driver: local
