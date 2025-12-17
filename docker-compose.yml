@@ -24,7 +24,7 @@ services:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   portfolio-web:
-    build: .
+    image: http-portfolio:latest
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.portfolio-web-ratelimit.ratelimit.average=20"
