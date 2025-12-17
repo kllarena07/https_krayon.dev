@@ -8,7 +8,7 @@ You can visit it at https://krayon.dev.
 
 To view the terminal version, `ssh krayon.dev` (use in a modern terminal for the best experience). View the code [here](https://github.com/kllarena07/ssh_krayon.dev).
 
-The way that the browser version works is just by spinning up a [ttyd](https://github.com/tsl0922/ttyd) Docker container, copy in the TUI binary, and run the binary in a ttyd environment in a restricted shell.
+The way that the browser version works is just by spinning up a Docker container that's running the TUI binary and a modified version of [ttyd](https://github.com/kllarena07/ttyd) in a restricted shell.
 
 ## 👾 Bugs or vulnerabilities
 
