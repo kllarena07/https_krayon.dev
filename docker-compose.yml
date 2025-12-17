@@ -1,6 +1,6 @@
 services:
   portfolio-web:
-    build: http-portfolio:latest
+    image: http-portfolio:latest
     deploy:
       replicas: 5
       restart_policy:
